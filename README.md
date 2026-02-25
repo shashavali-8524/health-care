@@ -2,6 +2,9 @@
 
 A full-stack web application for managing patients, doctors, and patient-doctor assignments. Built with Django + Django REST Framework backend, vanilla JavaScript frontend, PostgreSQL database, and JWT authentication.
 
+### 📊 [View Interactive Architecture & Flow Diagrams →](PROJECT_DOCS.html)
+> Open `PROJECT_DOCS.html` in your browser for a complete visual guide covering system architecture, auth flows, ER diagrams, API reference, CRUD flows, project structure, and technology deep dive — all interactive and clickable.
+
 ---
 
 ## Tech Stack
@@ -71,8 +74,16 @@ DB_PORT=5432
 
 ```bash
 python manage.py migrate
+python manage.py seed_data    # Insert synthetic data (3 users, 8 doctors, 10 patients, 14 mappings)
 python manage.py runserver
 ```
+
+**Seed Data Login Credentials:**
+| Username | Password | Email |
+|---|---|---|
+| dr_admin | Admin@1234 | admin@healthcare.com |
+| nurse_jane | Jane@1234 | jane@healthcare.com |
+| receptionist_bob | Bob@12345 | bob@healthcare.com |
 
 Open `http://127.0.0.1:8000/` in your browser.
 
@@ -109,12 +120,12 @@ Open `http://127.0.0.1:8000/` in your browser.
 
 ### Mappings (Requires JWT)
 
-| Method | Endpoint                      | Description                  |
-|--------|-------------------------------|------------------------------|
-| GET    | `/api/mappings/`              | List all assignments         |
-| POST   | `/api/mappings/`              | Assign doctor to patient     |
-| GET    | `/api/mappings/<patient_id>/` | Get doctors for a patient    |
-| DELETE | `/api/mappings/delete/<id>/`  | Remove an assignment         |
+| Method | Endpoint                              | Description                  |
+|--------|---------------------------------------|------------------------------|
+| GET    | `/api/mappings/`                      | List all assignments         |
+| POST   | `/api/mappings/`                      | Assign doctor to patient     |
+| GET    | `/api/mappings/patient/<patient_id>/` | Get doctors for a patient    |
+| DELETE | `/api/mappings/<id>/`                 | Remove an assignment         |
 
 Include `Authorization: Bearer <access_token>` header for all protected endpoints.
 

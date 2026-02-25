@@ -139,7 +139,7 @@ async function removeMapping(id) {
     if (!confirm('Remove this assignment?')) return;
 
     try {
-        await apiRequest(`/mappings/delete/${id}/`, 'DELETE');
+        await apiRequest(`/mappings/${id}/`, 'DELETE');
         showAlert('alert', 'Assignment removed.', 'success');
         loadData();
     } catch (err) {
